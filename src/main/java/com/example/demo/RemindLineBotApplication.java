@@ -25,8 +25,8 @@ public class RemindLineBotApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RemindLineBotApplication.class, args);
 	}
-	  @Autowired
-	  private LineMessagingService lineMessagingService;
+//	  @Autowired
+//	  private LineMessagingService lineMessagingService;
 	  
 	  private ReplyService replyService;
 
