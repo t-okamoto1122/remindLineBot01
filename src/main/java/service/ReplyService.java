@@ -26,6 +26,7 @@ public class ReplyService {
 
 	public BotApiResponse reply(MessageEvent<TextMessageContent> event) throws IOException {
 
+		System.out.println("creat messages");
         String receivedMessage = event.getMessage().getText();
         String replyToken = event.getReplyToken();
         
