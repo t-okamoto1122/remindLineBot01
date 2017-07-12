@@ -16,6 +16,8 @@ import com.linecorp.bot.model.response.BotApiResponse;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 
+import service.ReplyService;
+
 @SpringBootApplication
 @LineMessageHandler
 public class RemindLineBotApplication {
@@ -25,6 +27,8 @@ public class RemindLineBotApplication {
 	}
 	  @Autowired
 	  private LineMessagingService lineMessagingService;
+	  
+	  private ReplyService replyService;
 
 	  @EventMapping
 	  public void handleTextMessageEvent(MessageEvent<TextMessageContent> event) throws Exception {
@@ -33,15 +37,14 @@ public class RemindLineBotApplication {
 //	        .replyMessage(new ReplyMessage(event.getReplyToken(),
 //	                                       Collections.singletonList(new TextMessage(event.getSource().getUserId()))))
 //	        .execute().body();
-	    final BotApiResponse apiResponse = lineMessagingService
-		        .replyMessage(new ReplyMessage(event.getReplyToken(),
-		                                       Collections.singletonList(new TextMessage("it's reply msg"))))
-		        .execute().body();
-	    System.out.println("Sent messages: " + apiResponse);
+	    BotApiResponse response = replyService.reply(event);
+	    
+	    System.out.println("Sent messages: " + response);
 	  }
 
 	  @EventMapping
 	  public void defaultMessageEvent(Event event) {
+		  
 	    System.out.println("event: " + event);
 	  }
 }
