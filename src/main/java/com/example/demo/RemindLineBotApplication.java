@@ -29,10 +29,14 @@ public class RemindLineBotApplication {
 	  @EventMapping
 	  public void handleTextMessageEvent(MessageEvent<TextMessageContent> event) throws Exception {
 	    System.out.println("event: " + event);
+//	    final BotApiResponse apiResponse = lineMessagingService
+//	        .replyMessage(new ReplyMessage(event.getReplyToken(),
+//	                                       Collections.singletonList(new TextMessage(event.getSource().getUserId()))))
+//	        .execute().body();
 	    final BotApiResponse apiResponse = lineMessagingService
-	        .replyMessage(new ReplyMessage(event.getReplyToken(),
-	                                       Collections.singletonList(new TextMessage(event.getSource().getUserId()))))
-	        .execute().body();
+		        .replyMessage(new ReplyMessage(event.getReplyToken(),
+		                                       Collections.singletonList(new TextMessage("it's reply msg"))))
+		        .execute().body();
 	    System.out.println("Sent messages: " + apiResponse);
 	  }
 
